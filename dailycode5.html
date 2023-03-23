@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+    Good morning! Here's your coding interview problem for today.
+
+    This problem was asked by Jane Street.
+    
+    cons(a, b) constructs a pair, and car(pair) and cdr(pair) returns the first and last element of that pair. For example, car(cons(3, 4)) returns 3, and cdr(cons(3, 4)) returns 4.
+    
+    Given this implementation of cons:
+    
+    def cons(a, b):
+        def pair(f):
+            return f(a, b)
+        return pair
+    Implement car and cdr.
+  <script>
+    function constructPair(a,b)
+    {
+       return (func)=>{ return func(a,b)}
+    }
+    
+    pair = constructPair(5,6);
+
+
+    function cdr(pair)
+    {
+        return pair((a,b)=>{
+            return a <= b ? b:a;
+        })
+    }
+
+    function car(pair)
+    {
+        return pair((a,b)=>{
+            return a >  b ? b:a;
+        })
+    }
+    console.log(car(pair))
+
+    console.log(cdr(pair))
+  </script> 
+</body>
+
+</html>
