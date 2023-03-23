@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  Good morning! Here's your coding interview problem for today.
+
+  This problem was asked by Uber.
+
+  Given an array of integers, return a new array such that each element at index i of the new array is the product of
+  all the numbers in the original array except the one at i.
+
+  For example, if our input was [1, 2, 3, 4, 5], the expected output would be [120, 60, 40, 30, 24]. If our input was
+  [3, 2, 1], the expected output would be [2, 3, 6].
+
+  Follow-up: what if you can't use division?
+  <script>
+    let count =0;
+    function giveProduct(inputArray) {
+      let product = 1;
+      for (let i = 0; i < inputArray.length; i++) {
+      count++;
+        product = product * inputArray[i];
+      }
+      return product
+    }
+
+
+    let input = [1, 2, 3, 4, 5]
+    let productArray = [];
+    let shiftedValue = 1;
+    let shiftedArray = input.slice(0);
+    for (let i = 0; i < input.length; i++) {
+      if (i != 0) {
+        shiftedArray.push(shiftedValue);
+      }
+      shiftedValue = shiftedArray.shift();
+      productArray.push(giveProduct(shiftedArray));
+    }
+
+    console.log("Count = " + count);
+    console.log("Products = " + productArray);
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+
+
+// TODO: implement 'mergesorted'
+// INPUT: a and b are both sorted arrays consisting entirely of integers
+// ALSO: Array.prototype.sort has been disabled
+function mergesorted(a, b) {
+  if(a.length ==0 &&  b.length == 0)
+    {
+       return []
+      
+    }
+  
+      var sortableArray = a.concat(b);
+      var sortedArray = sortFunction(sortableArray);
+  
+      return sortedArray;
+
+}
+
+function sortFunction(sortableArray){
+  if(sortableArray == [])
+      return [];
+  else if(sortableArray.length ==1)
+    {
+      return sortableArray
+    }
+  else if(sortableArray.length>1)
+    {
+       var leftArray  = sortFunction(sortableArray.slice(0,Math.floor(sortableArray.length/2)));
+       var rightArray = sortFunction(sortableArray.slice(Math.floor(sortableArray.length/2),sortableArray.length));
+      
+      return merge(leftArray,rightArray);
+
+    }
+}
+
+function merge(leftArray,rightArray)
+{
+    var i=0;
+    var j=0;
+  var sortedArray = [];
+      for(i;i<leftArray.length;)
+        {
+          for(j;j<rightArray.length;)
+            {
+              if(leftArray[i]<rightArray[j])
+                {
+                  sortedArray.push(leftArray[i]);
+                  i++;
+                }
+              else if(leftArray[i]==rightArray[j])
+                {
+                  sortedArray.push(leftArray[i]);
+                  sortedArray.push(leftArray[i]);
+                  i++;
+                  j++
+                }
+              else
+                {
+                  console.log("i =" + i)
+                  console.log("j =" + j)
+                  
+                  sortedArray.push(rightArray[j]);
+                  j++
+                }
+
+                if(i==leftArray.length)
+                {
+                sortedArray = sortedArray.concat(rightArray.slice(j,j.length));
+                break;
+                }
+            }
+            if(j==rightArray.length)
+            {
+                sortedArray = sortedArray.concat(leftArray.slice(i,leftArray.length));
+                break;
+            }
+
+            
+        }
+  return sortedArray;
+  
+}
+setTimeout(()=>{mergesorted([4],[1,2,3])},3000);
+    </script>
+</body>
+</html>

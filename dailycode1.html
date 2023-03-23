@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+ Good morning! Here's your coding interview problem for today.
+
+This problem was recently asked by Google.
+
+Given a list of numbers and a number k, return whether any two numbers from the list add up to k.
+
+For example, given [10, 15, 3, 7] and k of 17, return true since 10 + 7 is 17.
+[15,3,10,7]
+Bonus: Can you do this in one pass?
+    <script>
+        let arr = [1,1,15,3,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,10,7];
+        let target = 17;
+        let diff = [];
+        let total = []
+        let count =0;
+        console.log("ARRAY LENGTH = " + arr.length)
+        for(let i=0;i<arr.length;i++)  
+        {
+            diff.push(target-arr[i])
+        }
+        for(let i=0;i<arr.length;i++)  
+        {
+            for(let j=i+1;j<arr.length;j++)
+            {
+                if(arr[i] + arr[j] == 17)
+                {
+                    console.log("Success")
+                }
+                count++;
+
+            }
+        }
+        console.log("count = " + count)
+    </script>
+</body>
+</html>

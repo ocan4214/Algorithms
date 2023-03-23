@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  Good morning! Here's your coding interview problem for today.
+
+This problem was asked by Google.
+
+Given the root to a binary tree, implement serialize(root), which serializes the tree into a string, and deserialize(s), which deserializes the string back into the tree.
+
+For example, given the following Node class
+
+class Node:
+    def __init__(self, val, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+The following test should pass:
+node = Node('root', Node('left', Node('left.left')), Node('right'))
+assert deserialize(serialize(node)).left.left.val == 'left.left' 
+  <script>
+       function createNode(value,left,right)
+       {
+          return { value:value,left:left,right:right};
+       }
+       let root = createNode("root",createNode("left",{},{}),createNode(right,{},{}));
+       root.left = createNode("left.left",{},{});
+       let maxDepth = 0;
+       function findDepth(root,depth)
+       {
+          let depth =0;
+
+          if(root.left != null || root.left != undefined)
+          {
+               depth++;
+               findDepth(root.left,depth);
+          }
+          if(root.right != null || root.right != undefined)
+          {
+                depth++;
+               findDepth(root.left,depth);
+          }
+          
+
+
+
+
+       }
+ 
+
+       function serializeTree(root)
+       {
+          maxDepth = findDepth(root,maxDepth);
+       }
+
+
+  </script>
+</body>
+
+</html>
