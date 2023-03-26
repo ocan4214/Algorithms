@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    Good morning! Here's your coding interview problem for today.
+
+    This problem was asked by Facebook.
+
+    Given the mapping a = 1, b = 2, ... z = 26, and an encoded message, count the number of ways it can be decoded.
+
+    For example, the message '111' would give 3, since it could be decoded as 'aaa', 'ka', and 'ak'.
+
+    You can assume that the messages are decodable. For example, '001' is not allowed.
+    <script>
+        let text = "111";
+        let encodeKeys = [];
+        
+        for (let i = 1; i <= 26; i++) {
+            encodeKeys.push({ key: String.fromCharCode(96 + i), value: i })
+        }
+
+        function textFormat(prev,current,next)
+        {
+            if(prev!="" && next !="")
+            {
+                return prev +"-"+current +"-"+next
+            }
+            else if(prev !="" && next =="")
+            {
+                return prev +"-"+current
+            }
+            else if(prev =="" && next !="")
+            {
+                return current +"-"+next
+            }
+            else 
+            {
+                return current
+            }
+        }
+
+        function Encode(substring) {
+            return encodeKeys.filter((item) => { return item.value == Number(substring) })[0].key;
+        }
+        console.log(encodeKeys);
+        let resFunc = "";
+
+        function splitter(inputText, startIndex, divider)
+        {
+
+                let result ="";
+                let prev = substringSplitter(inputText.substring(0, startIndex), 0, divider);
+                let cur = substringSplitter(inputText.substring(startIndex, startIndex + divider), startIndex + 1, divider) 
+                let next =  substringSplitter(inputText.substring(startIndex + divider), 0, divider);
+                result = textFormat(prev,cur,next);
+                if(result.charAt(0)=="-")
+                {
+                    result = result.split("");
+                    result[0] ="";
+                    result = result.join("")
+                }
+                else if(result.charAt(result.length-1)=="-")
+                {
+                    result = result.split("");
+                    result[result.length-1] ="";
+                    result = result.join("")
+                }
+                return result;
+        }
+        function substringSplitter(inputText, startIndex, divider) {
+            if (inputText.length <= divider && inputText != "" && Number(inputText) < 27) {
+                return Encode(inputText);
+            }
+            else if(inputText.length <= divider && inputText != "" && Number(inputText) >= 27) {
+                let part = splitter(inputText,startIndex,divider-1)
+                return part;
+            }
+            else if (inputText.length > divider) {
+                let result =""
+                result =  splitter(inputText,startIndex,divider);
+                return result;
+            }
+            else {
+                return "";
+            }
+        }
+        let j = 1;
+        // 129 1 2 9 12 9 1 29
+        let str = [];
+        let decodedStrings = new Set();
+        for (let i = 1; i <= text.length; i++) {
+            str = [];
+
+            resFunc = "";   
+            for(let j=0;j  < text.length;j++)
+            {
+                let res =substringSplitter(text, j, i)
+                decodedStrings.add(res);
+            }
+        }
+        console.log(decodedStrings," Count is = " + decodedStrings.size);
+    </script>
+</body>
+
+</html>

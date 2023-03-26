@@ -1,1 +1,2 @@
-Daily Coding Problems
+Daily Coding Problems and Algorithms
+ 
