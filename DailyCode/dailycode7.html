@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    Good morning! Here's your coding interview problem for today.
+
+    This problem was asked by Google.
+
+    A unival tree (which stands for "universal value") is a tree where all nodes under it have the same value.
+
+    Given the root to a binary tree, count the number of unival subtrees.
+
+    For example, the following tree has 5 unival subtrees:
+    <pre
+        style="background-color:#f8f8f8;border:1px solid #cccccc;font-size:13px;line-height:19px;overflow:auto;padding:6px 10px;border-radius:3px"><code style="border-radius:3px;font-family:monospace;margin:0;padding:0;white-space:pre-wrap;background:transparent;background-color:transparent;border:none">   0
+    / \
+   1   0
+      / \
+     1   0
+    / \
+   1   1
+  </code></pre>
+    <script>
+        function doesChildExist(child) {
+            if (child != null && child != undefined && child != {}) {
+                return true
+            }
+            else {
+                return false;
+            }
+        }
+        function createNode(value, left, right) {
+            return { value: value, left: left, right: right };
+        }
+        let root = createNode(0, createNode(1, null, null), createNode(0, {}, {}));
+        root.right = createNode(0, createNode(1, createNode(1, null, null), createNode(1, null, null)), createNode(0, null, null))
+        let univalTreeCount = 0;
+        function countSubTrees(root) {
+            if (!doesChildExist(root.left) && !doesChildExist(root.right)) {
+                univalTreeCount++;
+                return true;
+            }
+            else {
+                let left = true;
+                let right = true;
+                if (doesChildExist(root.left)) {
+                    left = countSubTrees(root.left) && root.left.value == root.value;
+                }
+                if(doesChildExist(root.right))
+                {
+                    right = countSubTrees(root.right) && root.right.value == root.value;
+                }
+                if(left==right && left)
+                {
+                    univalTreeCount++;
+                    return true;
+                }
+                else 
+                return false;
+
+            }
+
+        }
+        countSubTrees(root);
+        alert("Unival Subtree Count = " + univalTreeCount);
+    </script>
+</body>
+
+</html>
