@@ -1,0 +1,17 @@
+{
+  "name": "trees",
+  "version": "1.0.0",
+  "description": "",
+  "main": "BinaryTrees.js",
+  "scripts": {
+    "start": "node Out/LevelOrderBinaryTreeTraversal.js",
+    "prestart": "npm run build",
+    "build": "tsc"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^5.0.2"
+  }
+}
