@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    Good morning! Here's your coding interview problem for today.
+
+    This problem was asked by Twitter.
+    
+    Implement an autocomplete system. That is, given a query string s and a set of all possible query strings, return all strings in the set that have s as a prefix.
+    
+    For example, given the query string de and the set of strings [dog, deer, deal], return [deer, deal].
+    
+    Hint: Try preprocessing the dictionary into a more efficient data structure to speed up queries.
+    <script>
+        let wordArray = ["dog","deer","deal"];
+        let query="de";
+        let suggestionArray =[];
+        for(let i=0;i<wordArray.length;i++)
+        {
+            if(wordArray[i].startsWith(query))
+            {
+                suggestionArray.push(wordArray[i])
+            }
+        }
+
+        console.log("Query = " + query + "," + " Suggestion Array = " + suggestionArray);
+
+    </script>
+</body>
+
+</html>
